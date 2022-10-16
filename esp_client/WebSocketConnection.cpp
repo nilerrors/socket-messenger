@@ -1,27 +1,27 @@
-#include <ArduinoWebsockets.h>
 #include "WebSocketConnection.h"
 
+#include <ArduinoWebsockets.h>
 
-WebSocketConnection::WebSocketConnection(WebSocketServer s, websockets::WebsocketsClient c) {
-	this->server = s;
-	this->client = c;
+WebSocketConnection::WebSocketConnection(WebSocketServer s,
+                                         websockets::WebsocketsClient c) {
+  this->server = s;
+  this->client = c;
 
-	this->client.onMessage(this->onMessageCallback);
-	this->client.onEvent(this->onEventsCallback);
+  this->client.onMessage(this->onMessageCallback);
+  this->client.onEvent(this->onEventsCallback);
 }
 
 bool WebSocketConnection::connect() {
-	return this->client.connect(this->server.host, this->server.port, this->server.path);  
+  return this->client.connect(this->server.host, this->server.port,
+                              this->server.path);
 }
 
-bool WebSocketConnection::poll() {
-	return this->client.poll();  
-}
+bool WebSocketConnection::poll() { return this->client.poll(); }
 
 bool WebSocketConnection::send(const websockets::WSInterfaceString &data) {
-	return this->client.send(data);
+  return this->client.send(data);
 }
 
 bool WebSocketConnection::ping(const websockets::WSInterfaceString data = "") {
-	return this->client.ping(data);
+  return this->client.ping(data);
 }

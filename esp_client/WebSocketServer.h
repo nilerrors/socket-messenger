@@ -1,6 +1,5 @@
-struct WebSocketServer
-{
-	char* host;
-	uint16_t port;
-	char* path;
+struct WebSocketServer {
+  char* host;
+  uint16_t port;
+  char* path;
 };
