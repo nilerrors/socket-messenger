@@ -5,8 +5,9 @@ const ws = new WebSocket(`ws://localhost:8000/ws/${client_id}`)
 
 ws.onmessage = function (event) {
     if (
-        event.data.length >= 25 &&
-        event.data.slice(0, 26) === `Client #${client_id} says`
+        event.data.length > `Client #${client_id} says`.length &&
+        event.data.slice(0, `Client #${client_id} says`.length) ===
+            `Client #${client_id} says`
     ) {
         return
     }

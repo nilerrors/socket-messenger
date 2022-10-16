@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+}
+form {
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 0;
+    padding-top: 3vh;
+    width: 100vw;
+    margin: 0;
+}
+form > input {
+    width: 90vw;
+    padding: 0 0.5vw;
+    outline: none;
+}
+form > button {
+    width: 8.7vw;
+}
+ul,
+h2 {
+    padding: 0 0.5vw;
+    margin: 0;
+}
+li {
+    color: blue;
+    list-style-type: none;
+}
+.you {
+    color: red;
+}
