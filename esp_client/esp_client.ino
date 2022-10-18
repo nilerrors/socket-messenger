@@ -9,6 +9,9 @@ WebSocketServer server = {"192.168.129.7", 8000, "/ws/thisiscrazy"};
 websockets::WebsocketsClient client;
 WebSocketConnection connection(server, client);
 
+long int messages = 0;
+long int events = 0;
+
 void setup() {
   Serial.begin(115200);
   WiFi.begin(ssid, password);
@@ -18,6 +21,25 @@ void setup() {
     Serial.print(".");
     delay(1000);
   }
+
+
+  connection.onMessage([&](websockets::WebsocketsMessage message) {
+    messages++;
+    Serial.println(message.data());
+  });
+
+  connection.onEvent([&](websockets::WebsocketsEvent event, String data) {
+    events++;
+    if (event == websockets::WebsocketsEvent::ConnectionOpened) {
+      Serial.println("Connnection Opened");
+    } else if (event == websockets::WebsocketsEvent::ConnectionClosed) {
+      Serial.println("Connnection Closed");
+    } else if (event == websockets::WebsocketsEvent::GotPing) {
+      Serial.println("Got a Ping!");
+    } else if (event == websockets::WebsocketsEvent::GotPong) {
+      Serial.println("Got a Pong!");
+    }
+  });
 
   connection.connect();
   connection.send("Hello World");

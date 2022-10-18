@@ -6,9 +6,6 @@ WebSocketConnection::WebSocketConnection(WebSocketServer s,
                                          websockets::WebsocketsClient c) {
   this->server = s;
   this->client = c;
-
-  this->client.onMessage(this->onMessageCallback);
-  this->client.onEvent(this->onEventsCallback);
 }
 
 bool WebSocketConnection::connect() {
@@ -24,4 +21,12 @@ bool WebSocketConnection::send(const websockets::WSInterfaceString &data) {
 
 bool WebSocketConnection::ping(const websockets::WSInterfaceString data = "") {
   return this->client.ping(data);
+}
+
+void WebSocketConnection::onEvent(const websockets::PartialEventCallback callback) {
+  this->client.onEvent(callback);  
+}
+
+void WebSocketConnection::onMessage(const websockets::PartialMessageCallback callback) {
+  this->client.onMessage(callback);
 }
