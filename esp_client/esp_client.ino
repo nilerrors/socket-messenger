@@ -2,8 +2,8 @@
 
 #include "WebSocketConnection.h"
 
-const char* ssid = "Proximus-Home-038934";
-const char* password = "ubs67anbm4nckf3f";
+const char* ssid = "****";
+const char* password = "****";
 
 WebSocketServer server = {"192.168.129.7", 8000, "/ws/thisiscrazy"};
 websockets::WebsocketsClient client;
